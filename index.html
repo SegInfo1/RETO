@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center mt-5 mb-5">APP API-REST PYTHON - FLASK - MONGODB</h1>
+    </div>
+
+    <div class="container">
+        <div class="row row-col-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2">
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="text-center">Alta producto</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="/products" method="POST">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control mb-3" name="name">
+                            <label>Fecha Alta</label>
+                            <input type="text" class="form-control mb-3" name="fec_alta">
+                            <label>Codigo ZIP</label>
+                            <input type="text" class="form-control mb-3" name="codigo_zip">
+                            <label>Numero de TDC</label>
+                            <input type="text" class="form-control mb-3" name="credit_card_num">
+                            <label>Numero de CCV</label>
+                            <input type="text" class="form-control mb-3" name="credit_card_ccv">
+                            <label>Direccion de Cuenta</label>
+                            <input type="text" class="form-control mb-3" name="cuenta_numero_direccion">
+                            <label>Latitud</label>
+                            <input type="text" class="form-control mb-3" name="geo_latitud">
+                            <label>Longitud</label>
+                            <input type="text" class="form-control mb-3" name="geo_longitud">
+                            <label>Color Favorito</label>
+                            <input type="text" class="form-control mb-3" name="color_favorito">
+                            <label>Foto DNI</label>
+                            <input type="text" class="form-control mb-3" name="foto_dni">
+                            <label>Auto</label>
+                            <input type="text" class="form-control mb-3" name="auto">
+                            <label>Auto Modelo</label>
+                            <input type="text" class="form-control mb-3" name="auto_modelo">
+                            <label>Auto tipo</label>
+                            <input type="text" class="form-control mb-3" name="auto_tipo">
+                            <label>Auto color</label>
+                            <input type="text" class="form-control mb-3" name="auto_color">
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="text-center">Productos</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <div class="row row-col-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
+                                {% for product in products %}
+
+                                    <div class="col">
+                                        <li class="list-group-item mb-3">
+                                            <form action="/edit/{{product.name}}" method="POST">
+                                                <input type="text" class="form-control" value="{{product.name}}" name="name">
+                                                <small>Fecha de alta</small>
+                                                <input type="text" class="form-control" value="{{product.fec_alta}}" name="fec_alta">
+                                                <small>Codigo zip</small>
+                                                <input type="text" class="form-control" value="{{product.codigo_zip}}" name="codigo_zip">
+                                                <small>Numero de TDC</small>
+                                                <input type="text" class="form-control" value="{{product.credit_card_num}}" name="credit_card_num">
+                                                <small>Numero de CCV</small>
+                                                <input type="text" class="form-control" value="{{product.credit_card_ccv}}" name="credit_card_ccv">
+                                                <small>Direccion</small>
+                                                <input type="text" class="form-control" value="{{product.cuenta_numero_direccion}}" name="cuenta_numero_direccion">
+                                                <small>Latitud</small>
+                                                <input type="text" class="form-control" value="{{product.geo_latitud}}" name="geo_latitud">
+                                                <small>Longitud</small>
+                                                <input type="text" class="form-control" value="{{product.geo_longitud}}" name="geo_longitud">
+                                                <small>Color Favorito</small>
+                                                <input type="text" class="form-control" value="{{product.color_favorito}}" name="color_favorito">
+                                                <small>DNI</small>
+                                                <input type="text" class="form-control" value="{{product.foto_dni}}" name="foto_dni">
+                                                <small>Auto</small>
+                                                <input type="text" class="form-control" value="{{product.auto}}" name="auto">
+                                                <small>Auto Modelo</small>
+                                                <input type="text" class="form-control" value="{{product.auto_modelo}}" name="auto_modelo">
+                                                <small>Auto Tipo</small>
+                                                <input type="text" class="form-control" value="{{product.auto_tipo}}" name="auto_tipo">
+                                                <small>Auto Color</small>
+                                                <input type="text" class="form-control" value="{{product.auto_color}}" name="auto_color">
+                                                <button class="btn btn-primary btn-sm mt-3" type="submit">Editar</button>
+                                                <a href="{{url_for('delete', product_name=product.name)}}" class="btn btn-danger btn-sm mt-3">Eliminar</a>
+
+                                            </form>
+                                        </li>
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                        </ul>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
